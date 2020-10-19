@@ -1,0 +1,3 @@
+[submodule "RepoTemplate"]
+	path = RepoTemplate
+	url = https://dev.azure.com/msazure/One/_git/Rome-Shared-RepoTemplate

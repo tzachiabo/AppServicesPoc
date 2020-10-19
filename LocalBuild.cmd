@@ -1,0 +1,1 @@
+powershell ./LocalBuild.ps1

@@ -1,0 +1,25 @@
+{
+    "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutSpec.json",
+    "contentVersion": "1.0.0.0",
+    "rolloutMetadata": {
+        "serviceModelPath": "Dev_ServiceModel.json",
+        "scopeBindingsPath": "ScopeBindings.json",
+        "name": "AppServicesPoc-Dev",
+        "rolloutType": "Major",
+        "buildSource": {
+            "parameters": {
+                "versionFile": "BuildVer.txt"
+            }
+        }
+    },
+    "orchestratedSteps": [
+        {
+            "name": "AppServicesPocDeploy",
+            "targetType": "ServiceResource",
+            "targetName": "AppServicesPocDeploy",
+            "actions": [ "Deploy" ],
+            "dependsOn": [ ]
+        }
+    ]
+}
+

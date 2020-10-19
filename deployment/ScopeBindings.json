@@ -1,0 +1,170 @@
+{
+  "$schema": "https://ev2schema.azure.net/schemas/2020-01-01/scopeBindings.json",
+  "contentVersion": "1.0.0.0",
+  "scopeBindings": [
+    {
+      "scopeTagName": "common",
+      "bindings": [
+        {
+          "find": "__ENVIRONMENT__",
+          "replaceWith": "$environment()"
+        },
+        {
+          "find": "__BUILD_VERSION__",
+          "replaceWith": "$buildVersion()"
+        },
+        {
+          "find": "__TENANTID__",
+          "replaceWith": "$callerTenantId()"
+        },
+        {
+          "find": "__KEY_VAULT_SECRET_USER_ROLEID__",
+          "replaceWith": "4633458b-17de-408a-b874-0445c86b69e6"
+        },
+        {
+          "find": "__WEBAPP_RP_APPID_",
+          "replaceWith": "f8daea97-62e7-4026-becf-13c2ea98e8b4"
+        }
+      ]
+    },
+    {
+      "scopeTagName": "prod",
+      "bindings": [
+        {
+          "find": "__POLICY_STORAGE__",
+          "replaceWith": "policystoragedev"
+        },
+        {
+          "find": "__DNS_CNAME__",
+          "replaceWith": "dcrp.informationprotection.security.azure.net"
+        }
+      ]
+    },
+    {
+      "scopeTagName": "dev",
+      "bindings": [
+        {
+          "find": "__POLICY_STORAGE__",
+          "replaceWith": "policystoragedev2"
+        },
+        {
+          "find": "__POLICY_STORAGE_LOCATION_",
+          "replaceWith": "centralus"
+        },
+        {
+          "find": "__DNS_CNAME__",
+          "replaceWith": "dcrp.informationprotection.security.azure-int.net"
+        },
+        {
+          "find": "__AUTH_SECRET__",
+          "replaceWith": "https://policykeys.vault.azure.net/secrets/dnscert1"
+        },
+        {
+          "find": "__VAULT_ENDPOINT__",
+          "replaceWith": "vault.azure.net"
+        },
+        {
+          "find": "__ROLLOUT_APPID_",
+          "replaceWith": "2772d541-f69a-43a3-ad35-44a017a4947d"
+        }
+      ]
+    },
+    {
+      "scopeTagName": "global",
+      "bindings": [
+        {
+          "find": "__LOCATION__",
+          "replaceWith": "global"
+        }
+      ]
+    },
+    {
+      "scopeTagName": "keyVault",
+      "bindings": [
+        {
+          "find": "__LOCATION__",
+          "replaceWith": "westeurope"
+        },
+        {
+          "find": "__CALLER_OBJECTID__",
+          "replaceWith": "$callerObjectId()"
+        }
+      ]
+    },
+    {
+      "scopeTagName": "WestEurope",
+      "bindings": [
+        {
+          "find": "__LOCATION__",
+          "replaceWith": "westeurope"
+        },
+        {
+          "find": "__WARMPUP_SLOT_FULLNAME__",
+          "replaceWith": "$resource(RpServiceWestEuropeRollout).action(deploy).outputs(warmpUpSlotFullName.value)"
+        },
+        {
+          "find": "__TRAFFIC_MANAGER_NAME__",
+          "replaceWith": "$resource(RpTrafficManagerRollout).action(deploy).outputs(trafficManagerName.value)"
+        },
+        {
+          "find": "__TARGET_FULL_NAME__",
+          "replaceWith": "$resource(RpServiceWestEuropeRollout).action(deploy).outputs(endpointUrl.value)"
+        },
+        {
+          "find": "__TARGET_NAME__",
+          "replaceWith": "$resource(RpServiceWestEuropeRollout).action(deploy).outputs(websiteName.value)"
+        },
+        {
+          "find": "__SERVER_FARM_NAME__",
+          "replaceWith": "$resource(RpServiceWestEuropeRollout).action(deploy).outputs(serverFarmName.value)"
+        },
+        {
+          "find": "__SERVICE_PRINCIPAL_ID__",
+          "replaceWith": "$resource(RpServiceWestEuropeRollout).action(deploy).outputs(servicePrincipalId.value)"
+        },
+        {
+          "find": "__KEY_VAULT_NAME__",
+          "replaceWith": "$resource(RpKeyVaultRollout).action(deploy).outputs(keyVaultName.value)"
+        }
+      ]
+    },
+    {
+      "scopeTagName": "CentralUS",
+      "bindings": [
+        {
+          "find": "__LOCATION__",
+          "replaceWith": "centralus"
+        },
+        {
+          "find": "__WARMPUP_SLOT_FULLNAME__",
+          "replaceWith": "$resource(RpServiceCentralUSRollout).action(deploy).outputs(warmpUpSlotFullName.value)"
+        },
+        {
+          "find": "__TRAFFIC_MANAGER_NAME__",
+          "replaceWith": "$resource(RpTrafficManagerRollout).action(deploy).outputs(trafficManagerName.value)"
+        },
+        {
+          "find": "__TARGET_FULL_NAME__",
+          "replaceWith": "$resource(RpServiceCentralUSRollout).action(deploy).outputs(endpointUrl.value)"
+        },
+        {
+          "find": "__TARGET_NAME__",
+          "replaceWith": "$resource(RpServiceCentralUSRollout).action(deploy).outputs(websiteName.value)"
+        },
+        {
+          "find": "__SERVER_FARM_NAME__",
+          "replaceWith": "$resource(RpServiceCentralUSRollout).action(deploy).outputs(serverFarmName.value)"
+        },
+        {
+          "find": "__SERVICE_PRINCIPAL_ID__",
+          "replaceWith": "$resource(RpServiceCentralUSRollout).action(deploy).outputs(servicePrincipalId.value)"
+        },
+        {
+          "find": "__KEY_VAULT_NAME__",
+          "replaceWith": "$resource(RpKeyVaultRollout).action(deploy).outputs(keyVaultName.value)"
+        }
+      ]
+    }
+  ]
+}
+

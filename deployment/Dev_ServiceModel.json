@@ -1,0 +1,44 @@
+{
+    "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/ServiceModel.json",
+    "contentVersion": "0.0.0.1",
+    "serviceMetadata": {
+        "serviceGroup": "Rome.InformationProtection.RP",
+        "environment": "dev"
+    },
+    "serviceResourceGroupDefinitions": [
+        {
+            "name": "RpServiceDefinition",
+            "serviceResourceDefinitions": [
+                {
+                    "name": "AppServicesPocDeploy",
+                    "composedOf": {
+                        "arm": {
+                            "templatePath": "Templates\\RpDeploy.Template.json",
+                            "parametersPath": "Parameters\\RpDeploy.Parameters.json"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "serviceResourceGroups": [
+        {
+            "name": "AppServicesPocCentralUS",
+            "azureResourceGroupName": "WebApiPOC",
+            "location": "centralus",
+            "instanceOf": "RpServiceDefinition",
+            "azureSubscriptionId": "409111bf-3097-421c-ad68-a44e716edf58",
+            "scopeTags": [
+                { "name": "common" }, 
+                { "name": "CentralUS" },
+                { "name": "dev" }
+            ],
+            "serviceResources": [
+                {
+                    "name": "AppServicesPocDeploy",
+                    "instanceOf": "AppServicesPocDeploy"
+                }
+            ]
+        }
+    ]
+}
