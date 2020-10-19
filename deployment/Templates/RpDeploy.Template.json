@@ -43,9 +43,6 @@
             "identity": {
                 "type": "SystemAssigned"
             },
-            "tags": {
-                "[concat('hidden-related:', resourceId(resourcegroup().name,'Microsoft.Web/serverfarms', parameters('appServicePlan_name')))]": "empty"
-            },
             "properties": {
                 "name": "[parameters('appService_name')]",
                 "serverFarmId": "[resourceId(resourcegroup().name,'Microsoft.Web/serverfarms', parameters('appServicePlan_name'))]",
