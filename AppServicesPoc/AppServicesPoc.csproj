@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,7 +39,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -286,11 +286,4 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
-  
- <Target Name="ZipPublishDir" AfterTargets="Publish" Condition="Exists($(OutputPath))">
-	<ZipDirectory 
-		SourceDirectory="$(OutputPath)"
-		DestinationFile="..\deployment\AppServicesPoc.zip" 
-		Overwrite="true"/>
-   </Target>
 </Project>
