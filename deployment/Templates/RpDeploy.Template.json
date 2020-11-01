@@ -84,5 +84,26 @@
                 "name": "[parameters('appServicePlan_name')]"
             }
         }
-    ]
+    ],
+    "variables": {
+        "configReference": {
+            ".net": {
+                "comments": ".Net app. No additional configuration needed."
+            },
+            "html": {
+                "comments": "HTML app. No additional configuration needed."
+            },
+            "node": {
+                "appSettings": [
+                    {
+                        "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                        "value": "12.15.0"
+                    }
+                ]
+            },
+            "php": {
+                "phpVersion": "7.4"
+            }
+        }
+    }
 }
