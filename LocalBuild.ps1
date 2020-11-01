@@ -24,7 +24,7 @@ function Main()
 
     # Build and Package App service
     Write-Host -ForegroundColor Cyan "Build and Package App service"
-    RepoTemplate\build\cs\msbuild2019.cmd /t:Publish /p:Configuration=Release /p:CdpxPostSigning=true AppServicesPoc.sln
+    RepoTemplate\build\cs\msbuild2019.cmd /t:Zip src\Deployment\Deployment.csproj
     Write-Host "`n"
 }
 

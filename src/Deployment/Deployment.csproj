@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+		
+	<PropertyGroup>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+		<OutputType>Library</OutputType>
+		<AssemblyName>Detection.Cloud.AlertDispatcher.Deployment</AssemblyName>
+		<RootNamespace>Detection.Cloud.AlertDispatcher.Deployment</RootNamespace>
+		<ProjectGuid>{6F745A28-40E9-49C9-AB54-BCC05B8000AA}</ProjectGuid>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+		<DropDir>..\..\output</DropDir>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+	
+	<Target Name="CopySGR" AfterTargets="Build">
+		<ItemGroup>
+		  <FilesToCopy Include="ServiceGroupRoot\**" />
+		</ItemGroup>
+		<MakeDir Directories="$(DropDir)" />
+		<Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\..\output\%(FilesToCopy.RelativeDir)" SkipUnchangedFiles="$(SkipCopyUnchangedFiles)" OverwriteReadOnlyFiles="$(OverwriteReadOnlyFiles)" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" UseHardlinksIfPossible="$(CreateHardLinksForCopyAdditionalFilesIfPossible)" UseSymboliclinksIfPossible="$(CreateSymbolicLinksForCopyAdditionalFilesIfPossible)">
+		  <Output TaskParameter="DestinationFiles" ItemName="FileWrites" />
+		</Copy>
+	</Target>
+	
+	<ItemGroup>
+		<PackageReference Include="MSBuildTasks" Version="1.5.0.235" />
+	</ItemGroup>
+	
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+	<Target Name="Zip">
+		<ItemGroup>
+		  <AppServicesPoc Include="..\AppServicesPoc\**" />	
+		</ItemGroup>
+				
+		<Zip ZipFileName="..\..\output\ServiceGroupRoot\bin\AppServicesPoc.zip" Files="@(AppServicesPoc)" WorkingDirectory="..\AppServicesPoc" />
+	</Target>
+	
+</Project>

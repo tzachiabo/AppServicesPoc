@@ -1,0 +1,8 @@
+###
+Deployment Specific
+###
+
+# Files from deployment nuget
+Resources\DeploymentModel.xsd
+
+
